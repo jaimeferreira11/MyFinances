@@ -1,11 +1,10 @@
-# Proyecto final de curso  <br/>  Android: Fundamentos de Programación  <br/> (septiembre-diciembre 2017)
 
 
 ## Nombre de la aplicación: 
 My Finances
 
 ## Autor: 
-Torres Tovar, Jesus M
+Jaime Ferreira
 
 ## Qué hace la aplicación
 La aplicación es un manejador de finanzas personal que simplifica la visualización de entradas y gastos de dinero en una interfaz sencilla y cómoda, también permite agregar “presupuesto” por categorias y notifica al usuario en caso de excederlo. Las categorías de gastos e ingresos son extensibles por el usuario. También permite visualizar de manera directa el balance diario así como los presupuestos o límites de gastos mensuales. 
@@ -66,4 +65,4 @@ En cuanto a bugs, en algunas resoluciones muy pequeñas puede dar problemas de e
 https://docs.google.com/drawings/d/17tR4jrq8gaGRg2ToyXVym4-YKzmKFqJs_8THFkYXg-k/edit?usp=sharing
 
 ## Licencia
-MIT
+Ideas Web
