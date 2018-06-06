@@ -257,10 +257,13 @@ public class NewTransactionActivity extends AppCompatActivity {
             int month = Calendar.getInstance().get(Calendar.MONTH);
             //Checkeamos los budget
             for (MyBudget budget: controller.getAllBudget()) {
+                int porc = Utilities.notifPorcentajeConsumido(getApplicationContext(),controller);
+
+               //no se que se hace aca
                 if(budget.isGlobal() && budget.getAmount() <= controller.getBalance(month)){
-                    ManagerNotification.notify(getApplicationContext(), budget);
+                    ManagerNotification.notify(getApplicationContext(), budget, porc);
                 }else if(!budget.isGlobal() &&  budget.getAmount() <= controller.getBalance(budget.getCategory(), month)){
-                    ManagerNotification.notify(getApplicationContext(), budget);
+                    ManagerNotification.notify(getApplicationContext(), budget, porc);
                 }
             }
 

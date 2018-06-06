@@ -25,6 +25,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import py.ideasweb.myfinances.controller.Controller;
+import py.ideasweb.myfinances.model.MyBudget;
+import py.ideasweb.myfinances.views.ManagerNotification;
+
 /**
  * Created by root on 05/12/16.
  */
@@ -350,6 +354,100 @@ public class Utilities {
         String fecha= "no";
         fecha = sharedPreferences.getString("fecha_sinc", "");
         return fecha;
+    }
+
+
+    public static int notifPorcentajeConsumido(Context context, Controller controller){
+
+        int month = Calendar.getInstance().get(Calendar.MONTH);
+        float spent = controller.getExpensesTotalInMonth(month);
+        int percentage = 0;
+
+        for (MyBudget budget: controller.getAllBudget()) {
+            UtilLogger.info("Budget amount : "+budget.getAmount() + " balance mes " + month + " : " + spent);
+            if(budget.isGlobal() ){
+                 percentage = (int) (spent * 100 / budget.getAmount());
+                if(budget.isGlobal() && budget.isNotifyMe() && percentage > 79) {
+                    ManagerNotification.notify(context, budget, percentage);
+                }
+            }
+        }
+
+        UtilLogger.info("El porcentaje consumindo es : " + percentage + " %");
+
+        return percentage;
+    }
+
+    public static int getDiasDelMesRestantes(){
+        // hoy
+        Calendar now = Calendar.getInstance();
+        now.setTime( new Date());
+        // ultimo dia del mes
+        Calendar ultimoDia = Calendar.getInstance();
+        ultimoDia.set(Calendar.DAY_OF_MONTH, now.getActualMaximum(Calendar.DAY_OF_MONTH));
+        // se convierte a util date
+        Date utilDate = ultimoDia.getTime();
+
+        return Utilities.daysDifference(utilDate, new Date(System.currentTimeMillis()) );
+    }
+
+    public static int daysDifference(Date date1, Date date2) {
+
+        System.out.println("dia 1 " + date1);
+        System.out.println("dia 2 " + date2);
+        if (date1 == null || date2 == null) {
+            return 0;
+        }
+
+        date1 = setMidnight(date1); // seteamos la fecha a medianoche (00:00:00.0000)
+        date2 = setMidnight(date2); // seteamos la fecha a medianoche (00:00:00.0000)
+
+        Calendar calendar1 = Calendar.getInstance(); // creamos la instancia del calendario
+        Calendar calendar2 = Calendar.getInstance(); // creamos la instancia del calendario
+
+
+        // comprobamos cuál es mayor para setearlo correctamente
+        if (date2.compareTo(date1) > 0) {
+            calendar1.setTime(date1);
+            calendar2.setTime(date2);
+
+        } else {
+            calendar1.setTime(date2);
+            calendar2.setTime(date1);
+        }
+
+        int days = 0;
+
+
+        // mientras la fecha del calendario 2 sea mayor que la fecha del calendario 1
+
+        while (calendar1.compareTo(calendar2) < 0) {
+            calendar1.add(Calendar.DAY_OF_MONTH, 1); // suma un día al calendario 1
+            days++;
+        }
+
+        return days;
+
+    }
+
+
+
+    public static Date setMidnight(Date date) {
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTime(date);
+
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+
+        calendar.set(Calendar.MINUTE, 0);
+
+        calendar.set(Calendar.SECOND, 0);
+
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        return calendar.getTime();
+
     }
 
 

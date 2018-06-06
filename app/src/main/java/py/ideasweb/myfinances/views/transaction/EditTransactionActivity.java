@@ -33,6 +33,7 @@ import py.ideasweb.myfinances.model.DateRange;
 import py.ideasweb.myfinances.model.MyCategory;
 import py.ideasweb.myfinances.model.MyTransaction;
 import py.ideasweb.myfinances.utils.Utilities;
+import py.ideasweb.myfinances.utils.Validation;
 import py.ideasweb.myfinances.views.categories.ListCategoryDialog;
 
 import java.text.DateFormat;
@@ -116,8 +117,9 @@ public class EditTransactionActivity extends AppCompatActivity {
             isIncome = getIntent().getExtras().getBoolean(PARAM_TRANSACTION_IS_INCOME, false);
             long id = getIntent().getExtras().getLong(PARAM_TRANSACTION_ID);
             transaction = controller.getTransactionById(id);
+            int valor = (int) transaction.getValue();
+            value.setText(valor + "");
 
-            value.setText(transaction.getValue() + "");
             description.setText(transaction.getDescription());
             periodicity.setChecked(transaction.isPeriodic());
             if(transaction.isPeriodic()){
@@ -291,12 +293,16 @@ public class EditTransactionActivity extends AppCompatActivity {
                     transaction.setRange(DateRange.Daily);
                     break;
             }
+            if(!Validation.hasText(quantityDateRange, getApplicationContext())){
+                return;
+            }
             transaction.setQuantity(Integer.parseInt(quantityDateRange.getText().toString()));
             transaction.setRemindMe(reminderable.isChecked());
         }
         transaction.setValue(Float.parseFloat(value.getText().toString().replace(".", "")));
         transaction.setDescription(description.getText().toString());
         if(controller.editTransaction(transaction)){
+            Utilities.notifPorcentajeConsumido(getApplicationContext(),controller);
             finish();
         }
 

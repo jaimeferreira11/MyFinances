@@ -21,10 +21,11 @@
             android:drawableStart="@drawable/ic_globe_24dp"
             android:gravity="center_vertical"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:layout_marginBottom="20dp"
             tools:text="Presupuesto mensual" />
 
 
-        <android.support.constraint.ConstraintLayout
+       <!-- <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -45,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:textColor="@color/colorAccent"
                 android:text="Presupuesto"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 app:layout_constraintLeft_toLeftOf="@id/budget_value"
@@ -78,7 +80,8 @@
                 android:id="@+id/spent_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monto gastado"
+                android:text="Gasto Actual"
+                android:textColor="@color/colorAccent"
                 android:layout_marginTop="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 app:layout_constraintLeft_toLeftOf="@id/budget_spent"
@@ -115,19 +118,97 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Restante"
+                android:textColor="@color/colorAccent"
                 android:layout_marginTop="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 app:layout_constraintLeft_toLeftOf="@id/budget_remaining"
                 app:layout_constraintRight_toRightOf="@id/budget_remaining"
                 app:layout_constraintTop_toBottomOf="@id/budget_remaining" />
 
-        </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="17dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:text="Presupuesto" />
+
+            <TextView
+                android:id="@+id/budget_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                tools:text="$25.00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="17dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:text="Monto Gastado" />
+
+            <TextView
+                android:id="@+id/budget_spent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                tools:text="$25.00" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="right"
+
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="#A0A0A0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="17dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="Restante" />
+
+
+            <TextView
+                android:id="@+id/budget_remaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/primaryText"
+                tools:text="$25.00" />
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progressBudget"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="40dp" />
 
@@ -146,6 +227,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:layout_marginTop="5dp"
                 tools:text="95%"/>
         </LinearLayout>
 

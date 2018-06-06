@@ -28,19 +28,19 @@
          android:title="@string/add"
          android:icon="@drawable/ic_add_black_24dp"
          android:orderInCategory="200"
-         app:showAsAction="always" />
+         app:showAsAction="always" /> -->
 
-     <item android:id="@+id/remove"
-         android:title="@string/remove"
-         android:icon="@drawable/ic_remove_black_24dp"
+     <item android:id="@+id/exit"
+         android:title="Salir"
+         android:icon="@drawable/ic_exit_to_app_black_24dp"
          android:orderInCategory="200"
-         app:showAsAction="always" />-->
+         app:showAsAction="always" />
 
 
 
     <item android:id="@+id/settings"
         android:title="@string/settings"
-        android:icon="@drawable/ic_settings_black_24dp"
+        android:icon="@drawable/ic_settings_24dp"
         android:orderInCategory="200"
         app:showAsAction="always" />
 

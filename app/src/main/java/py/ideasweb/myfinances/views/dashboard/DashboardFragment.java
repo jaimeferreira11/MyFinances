@@ -48,6 +48,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import py.ideasweb.myfinances.utils.UtilLogger;
 import py.ideasweb.myfinances.utils.Utilities;
 
 public class DashboardFragment extends Fragment {
@@ -56,6 +57,10 @@ public class DashboardFragment extends Fragment {
     TextView incomeTotal;
     @BindView(R.id.expenses_total)
     TextView expensesTotal;
+    @BindView(R.id.expenses_por_dia)
+    TextView expensesPorDia;
+    @BindView(R.id.presupuesto_por_dia)
+    TextView presupuestoPorDia;
     @BindView(R.id.overview_balance_card)
     CardView overviewBalanceCard;
     @BindView(R.id.overview_categories_card_pie_chart)
@@ -157,7 +162,7 @@ public class DashboardFragment extends Fragment {
     private PieEntry setCategoryA(Map.Entry<MyCategory, Float> entry) {
         expenseCategoryA.setText(entry.getKey().getTitle());
         expenseCategoryA.setTextColor(Color.parseColor(entry.getKey().getColor()));
-        expenseCategoryAValue.setText("Gs. " + Utilities.toStringFromFloatWithFormat(entry.getValue()));
+        expenseCategoryAValue.setText("" + Utilities.toStringFromFloatWithFormat(entry.getValue()));
         expenseCategoryAWrapper.setVisibility(View.VISIBLE);
         return new PieEntry(entry.getValue());
     }
@@ -188,9 +193,14 @@ public class DashboardFragment extends Fragment {
         //Card de Global Overview
         float totalIncomes = controller.getIncomeTotal();
         float totalExpenses = controller.getExpensesTotal();
+        float remaning = totalIncomes - totalExpenses;
 
         incomeTotal.setText("Gs. " + Utilities.toStringFromFloatWithFormat(totalIncomes));
         expensesTotal.setText("Gs. " + Utilities.toStringFromFloatWithFormat(totalExpenses));
+
+
+
+        expensesPorDia.setText("Gs. " + Utilities.toStringFromFloatWithFormat(remaning / Utilities.getDiasDelMesRestantes()));
     }
 
     private void showExpensesByCategoryCard(){
@@ -361,6 +371,10 @@ public class DashboardFragment extends Fragment {
         budgetRemaining.setText("Restantes Gs. "  + Utilities.toStringFromFloatWithFormat(remaning));
         budgetMonthlyProgress.setMax(100);
         budgetMonthlyProgress.setProgress((int) (spent * 100 / value));
+
+
+        presupuestoPorDia.setText("Gs. " + Utilities.toStringFromFloatWithFormat(remaning / Utilities.getDiasDelMesRestantes()));
+
     }
 
     private void showMonthlyBalanceCard(){

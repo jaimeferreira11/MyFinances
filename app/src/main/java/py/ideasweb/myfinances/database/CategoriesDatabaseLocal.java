@@ -28,7 +28,7 @@ public class CategoriesDatabaseLocal implements CategoriesDatabase {
             defaultCategories.add(new MyCategory(false, "Salud", R.drawable.ic_health_24dp, "#00BFEA"));
             defaultCategories.add(new MyCategory(false, "Transporte", R.drawable.ic_transport_24dp, "#AF0095"));
             defaultCategories.add(new MyCategory(false, "Otros", R.drawable.ic_other_24dp, "#FF1919"));
-            defaultCategories.add(new MyCategory(false, "Tarjetas De Credito", R.drawable.credit_card, "#FF1919"));
+            defaultCategories.add(new MyCategory(false, "Tarjetas De Credito", R.drawable.ic_credit_card_black_24dp, "#FF1919"));
 
             defaultCategories.add(new MyCategory(true, "Comision", R.drawable.ic_investment_24dp, "#269900"));
             defaultCategories.add(new MyCategory(true, "Otros", R.drawable.ic_other_24dp, "#FF1919"));

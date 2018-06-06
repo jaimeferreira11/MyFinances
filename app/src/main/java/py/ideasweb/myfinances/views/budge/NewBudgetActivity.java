@@ -64,9 +64,12 @@ public class NewBudgetActivity extends AppCompatActivity {
         value.addTextChangedListener(Utilities.numberFormat(value));
 
        Bundle param = getIntent().getExtras();
-        if(param.getString("value") != null) value.setText(String.valueOf(param.getString("value"))) ;
-        if(param.getString("notif") != null) receiveAlerts.setChecked(true) ;
-        if(param.getString("periodic") != null) setPeriodic.setChecked(true) ;
+       if(param != null){
+
+           if(param.getString("value") != null) value.setText(String.valueOf(param.getString("value"))) ;
+           if(param.getString("notif") != null) receiveAlerts.setChecked(true) ;
+           if(param.getString("periodic") != null) setPeriodic.setChecked(true) ;
+       }
 
     }
 

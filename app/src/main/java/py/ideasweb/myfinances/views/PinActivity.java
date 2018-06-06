@@ -19,8 +19,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import py.ideasweb.myfinances.R;
 import py.ideasweb.myfinances.utils.UtilLogger;
+import py.ideasweb.myfinances.utils.Utilities;
 
 public class PinActivity extends Activity implements View.OnFocusChangeListener, View.OnKeyListener, TextWatcher {
     private EditText mPinFirstDigitEditText;
@@ -52,6 +56,9 @@ public class PinActivity extends Activity implements View.OnFocusChangeListener,
                 mPinSecondDigitEditText.setText(null);
                 mPinThirdDigitEditText.setText(null);
                 mPinForthDigitEditText.setText(null);
+                mPinHiddenEditText.setText(null);
+
+                //setPINListeners();
             }
         }
     }
@@ -83,15 +90,21 @@ public class PinActivity extends Activity implements View.OnFocusChangeListener,
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(new MainLayout(this, null));
+        //setContentView(R.layout.activity_pin);
 
         SharedPreferences prefs;
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        UtilLogger.info("PIN:  " + prefs.getBoolean("pin",false));
+        UtilLogger.info("PIN:  " + prefs.getBoolean("pin",true));
 
 
 
-        if(!prefs.getBoolean("pin",false)){
+
+
+
+
+
+        if(!prefs.getBoolean("pin",true)){
             Intent i = new Intent(this,MainActivity.class);
             startActivity(i);
             finish();

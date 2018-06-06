@@ -43,7 +43,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
         MyBudget budget = budgets.get(position);
         float spent;
         if(budget.isGlobal()){
-            holder.category.setText("Global");
+            holder.category.setText("Mi Presupuesto");
             holder.category.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_globe_24dp, 0, 0, 0);
             spent = controller.getExpensesTotalInMonth(month);
         }else{
@@ -52,7 +52,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
             holder.category.setCompoundDrawablesWithIntrinsicBounds(category.getIcon(), 0, 0, 0);
             spent = controller.getExpensesByCategoryInMonth(category, month);
         }
-        String symbol = "";
+        String symbol = "Gs. ";
         holder.budgetValue.setText(symbol + Utilities.toStringFromFloatWithFormat(budget.getAmount()));
         holder.budgetSpent.setText(symbol + Utilities.toStringFromFloatWithFormat(spent));
         holder.budgetRemaining.setText(symbol +   Utilities.toStringFromFloatWithFormat(budget.getAmount() - spent));

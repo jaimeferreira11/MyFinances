@@ -38,12 +38,9 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final MyCategory category = categories.get(position);
-        try{
 
-            holder.icon.setImageResource(category.getIcon());
-        }catch (Exception e){
+        holder.icon.setImageResource(category.getIcon());
 
-        }
         holder.iconWrapper.setCardBackgroundColor(Color.parseColor(category.getColor()));
         holder.title.setText(category.getTitle());
 

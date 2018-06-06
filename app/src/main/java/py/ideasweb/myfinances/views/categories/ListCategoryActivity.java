@@ -41,6 +41,7 @@ public class ListCategoryActivity extends AppCompatActivity{
         setContentView(R.layout.activity_category);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Mis Categorias");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.

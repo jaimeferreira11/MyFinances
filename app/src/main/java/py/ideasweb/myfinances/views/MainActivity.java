@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
+        TextView titleBilletera = findViewById(R.id.titleBilletera);
+        titleBilletera.setText("Esto tienes en tu billetera " + prefs.getString("usuario", ""));
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -135,11 +137,16 @@ public class MainActivity extends AppCompatActivity {
         if(id == R.id.remove){
             Intent i = new Intent(this,RemoveGasto.class);
             startActivity(i);
-        }
-        if(id == R.id.history){
-            Intent i = new Intent(this,HistorialActivity.class);
-            startActivity(i);
         }*/
+        if(id == R.id.exit){
+            if(!prefs.getBoolean("pin",false)){
+                finish();
+            }else {
+                Intent i = new Intent(this, PinActivity.class);
+                startActivity(i);
+                finish();
+            }
+        }
         if(id == R.id.settings){
             Intent i = new Intent(this,Preferencias.class);
             startActivity(i);
