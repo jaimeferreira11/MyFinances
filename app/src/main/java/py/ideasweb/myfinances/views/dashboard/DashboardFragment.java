@@ -191,7 +191,8 @@ public class DashboardFragment extends Fragment {
 
     private void showOverviewCard(){
         //Card de Global Overview
-        float totalIncomes = controller.getIncomeTotal();
+        int month = Calendar.getInstance().get(Calendar.MONTH);
+        float totalIncomes = controller.getIncomeTotalInMonth(month);
         float totalExpenses = controller.getExpensesTotal();
         float remaning = totalIncomes - totalExpenses;
 

@@ -5,6 +5,7 @@ import android.util.Log;
 import py.ideasweb.myfinances.model.MyCategory;
 import py.ideasweb.myfinances.model.MyTransaction;
 import py.ideasweb.myfinances.utils.Constants;
+import py.ideasweb.myfinances.utils.UtilLogger;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -48,22 +49,39 @@ public class TransactionDatabaseLocal implements TransactionDatabase {
     @Override
     public List<MyTransaction> getInMonth(int month) {
         Calendar calendar = Calendar.getInstance();
+        //setear el mes
         calendar.set(Calendar.MONTH, month);
+        // setear primer dia del mes
         calendar.set(Calendar.DAY_OF_MONTH, 1);
+        //setear medianoche
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
         long from = calendar.getTime().getTime();
+
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
         long to = calendar.getTime().getTime();
+
         return MyTransaction.find(MyTransaction.class, "time_stamp between ? and ?", from +"", to+"");
     }
 
     @Override
     public List<MyTransaction> getExpensesInMonth(int month) {
         Calendar calendar = Calendar.getInstance();
+        //setear el mes
         calendar.set(Calendar.MONTH, month);
+        // setear primer dia del mes
         calendar.set(Calendar.DAY_OF_MONTH, 1);
+        //setear medianoche
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
         long from = calendar.getTime().getTime();
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
         long to = calendar.getTime().getTime();
+        UtilLogger.info("SQL TRAns:  time_stamp between "+from+" and "+to);
         return MyTransaction.find(MyTransaction.class, "transaction_type = ? AND time_stamp between ? and ?", String.valueOf(Constants.TRANSACTION_EXPENSE), from+"", to+"");
     }
 
@@ -72,6 +90,11 @@ public class TransactionDatabaseLocal implements TransactionDatabase {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
+        //setear medianoche
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
         long from = calendar.getTime().getTime();
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
         long to = calendar.getTime().getTime();
@@ -83,6 +106,11 @@ public class TransactionDatabaseLocal implements TransactionDatabase {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
+        //setear medianoche
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
         long from = calendar.getTime().getTime();
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
         long to = calendar.getTime().getTime();
@@ -94,6 +122,11 @@ public class TransactionDatabaseLocal implements TransactionDatabase {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
+        //setear medianoche
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
         long from = calendar.getTime().getTime();
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
         long to = calendar.getTime().getTime();
